@@ -1,0 +1,15 @@
+.classpath
+
+.project
+
+.settings/
+
+bin/
+
+files/
+
+lib/
+
+.git/
+*.xml
+
