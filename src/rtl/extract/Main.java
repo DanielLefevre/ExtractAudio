@@ -38,8 +38,11 @@ public class Main {
 
         // Downloads.
         System.out.println("Downloading the mp3 files : ");
+        int i = 1;
         for (Page p : pageList) {
             p.getFile().download();
+            Display.display(i + " files downloaded on " + pageList.size());
+            i++;
         }
         System.out.println("Everything has been downloaded.");
     }

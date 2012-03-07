@@ -28,10 +28,10 @@ public class Page extends URLAdress {
         if (getClass() != obj.getClass())
             return false;
         Page other = (Page) obj;
-        if (this.file == null) {
-            if (other.file != null)
+        if (this.url == null) {
+            if (other.url != null)
                 return false;
-        } else if (!this.file.equals(other.file))
+        } else if (!this.url.equals(other.url))
             return false;
         return true;
     }

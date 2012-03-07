@@ -48,6 +48,7 @@ public class ReaderXML {
 
             Display.displayProgression(pageList.size() + " URLs loaded.");
         }
+        Display.display("");
 
         return pageList;
     }

@@ -1,9 +1,10 @@
 package rtl.extract.model;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -34,14 +35,14 @@ public class AudioFile extends URLAdress {
     }
 
     public void download() {
-        InputStream input = null;
-        FileOutputStream writeFile = null;
+        BufferedInputStream input = null;
+        BufferedOutputStream writeFile = null;
 
         Display.display("Downloading : " + this.getCompleteName());
 
         if (new File(this.getCompleteName()).exists()
                 && new File(this.getCompleteName()).length() == this.size) {
-            Display.display("The file has already been downloaded.");
+            Display.display("The file has already been downloaded. ");
 
         } else {
             try {
@@ -49,10 +50,10 @@ public class AudioFile extends URLAdress {
                 URLConnection connection = this.url.openConnection();
 
                 // Gets dataflow.
-                input = connection.getInputStream();
+                input = new BufferedInputStream(connection.getInputStream());
 
-                writeFile = new FileOutputStream(new File(
-                        this.getCompleteName()));
+                writeFile = new BufferedOutputStream(new FileOutputStream(
+                        new File(this.getCompleteName())));
 
                 byte[] buffer = new byte[1024];
                 int read, totalRead = 0;
