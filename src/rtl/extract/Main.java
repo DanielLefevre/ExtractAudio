@@ -74,12 +74,16 @@ public class Main {
             if (!loadList.contains(p)) {
                 p.extract();
                 p.getFile().downloadContext();
+                loadList.add(p);
             }
 
+            j++;
             Display.displayProgression(j + " pages analyzed on "
                     + pageList.size() + "...");
-            j++;
         }
+
+        pageList = loadList;
+
         System.out.println("Extraction of the page done.");
     }
 

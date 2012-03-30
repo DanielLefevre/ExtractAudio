@@ -30,8 +30,8 @@ public class AudioFile extends URLAdress {
     }
 
     public String getCompleteName() {
-        return "files/" + this.year + "/" + this.day + "-" + this.month + " - "
-                + this.title + ".mp3";
+        return "files/" + this.year + "/" + this.month + "/" + this.day + "-"
+                + this.month + "-" + this.year + " - " + this.title + ".mp3";
     }
 
     public void download() {
@@ -51,6 +51,12 @@ public class AudioFile extends URLAdress {
 
                 // Gets dataflow.
                 input = new BufferedInputStream(connection.getInputStream());
+
+                if (!new File("files/" + this.year + "/" + this.month + "/")
+                        .exists()) {
+                    new File("files/" + this.year + "/" + this.month + "/")
+                            .mkdirs();
+                }
 
                 writeFile = new BufferedOutputStream(new FileOutputStream(
                         new File(this.getCompleteName())));
@@ -116,23 +122,10 @@ public class AudioFile extends URLAdress {
         if (getClass() != obj.getClass())
             return false;
         AudioFile other = (AudioFile) obj;
-        if (this.day != other.day)
-            return false;
-        if (this.month != other.month)
-            return false;
-        if (this.path == null) {
-            if (other.path != null)
-                return false;
-        } else if (!this.path.equals(other.path))
-            return false;
-        if (this.size != other.size)
-            return false;
         if (this.title == null) {
             if (other.title != null)
                 return false;
         } else if (!this.title.equals(other.title))
-            return false;
-        if (this.year != other.year)
             return false;
         return true;
     }

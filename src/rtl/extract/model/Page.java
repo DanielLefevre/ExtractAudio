@@ -27,12 +27,6 @@ public class Page extends URLAdress {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Page other = (Page) obj;
-        if (this.url == null) {
-            if (other.url != null)
-                return false;
-        } else if (!this.url.equals(other.url))
-            return false;
         return true;
     }
 
